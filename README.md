@@ -20,3 +20,9 @@ http://localhost:8080/greeting
 Ссылка на руководство по Mustache:
 http://mustache.github.io/mustache.5.html
 
+
+git:
+git add .
+git commit -m "mvc-web"
+git branch -M mvc-web
+git push -u origin mvc-web	
