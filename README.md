@@ -1,39 +1,21 @@
 # sweater
 
-Добавляем базу данных (БД) в Spring
+Добавляем Spring Security (пользователи и авторизация) в приложение.
 
 Ссылка на git репозиторий из видео:
-https://github.com/drucoder/sweater/tree/JPA_Postgres
+https://github.com/drucoder/sweater/tree/SpringSecurity
 
 Для начала нам необходимо найти нужный гайд на сайте Spring:
-https://spring.io/guides/gs/accessing-data-mysql/
+https://spring.io/guides/gs/securing-web/
 
-Следующим шагом мы устанавливаем необходимые зависимости. В руководстве, которое мы используем, обозначена СУБД MySQL, которую можно использовать, как быстрый старт (её необходимо установить отдельно). Я же предпочитаю Postgres (его тоже надо устанавливать отдельно), ввиду большего соответсвия моим требованиям. На начальном этапе вы можете использовать любую удобную для вас БД.
+Следуя руководству, нам необходимо сделать 2 страницы: публичную, роль которой у нас возьмет на себя страница greetings, и доступная после авторизации, роль которой возьмет на себя страница main. Нам потребуется только немного изменить мэппинг страниц и добавить ссылку с главной на приватную страницу.
 
-Зависимость для Postgres:
-https://gist.github.com/drucoder/540185d50117491e094991d8a95c772d
+Далее мы подключаем зависимость Spring Security, настраиваем модуль вэб-безопасности, и добавляем страницу авторизации.
 
-#pom.xml
-<dependency>
-<groupId>org.postgresql</groupId>
-<artifactId>postgresql</artifactId>
-<scope>runtime</scope>
-</dependency>
+По умолчанию, в Spring Security включен механизм CSRF и нам необходимо передавать со всеми формами ключ защиты. Для этого в файле настроек приложения application.properties нужно добавить строку настройки из блокнота:
+#application.properties
+spring.mustache.expose-request-attributes=true
 
-Настройки БД для Postgres:
-https://gist.github.com/drucoder/17424174aa6c6ae3338632bcedcac859
+В результате мы имеем простейший механизм авторизации в приложении. Проблема в том, что он использует фиксированные учетные записи, хранящиеся в оперативной памяти и все данные пользователей открыто лежать в исходном коде.
 
-Далее по руководству создаем доменный объект (объект, который будем хранить в БД), репозиторий, для взаимодействия с БД и вносим изменения в контроллер и шаблон страницы.
-
-Руководство по mustache:
-http://mustache.github.io/mustache.5.html
-
-Руководство по JPA репозиториям:
-https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
-
-#git:
-git checkout -b JPA_Postgres
-git add .
-git commit -m "JPA_Postgres"
-git branch -M JPA_Postgres
-git push -u origin JPA_Postgres
+Для добавления возможности хранения учетных записей пользователей в БД, нам нужно изменить настройки Spring Security и создать доменный класс пользователя. Также, нам необходимо добавить страницу регистрации новых пользователей.
