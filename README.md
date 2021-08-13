@@ -1,6 +1,7 @@
 # sweater
 
 Добавляем Spring Security (пользователи и авторизация) в приложение.
+https://www.youtube.com/watch?v=WDlifgLS8iQ
 
 Ссылка на git репозиторий из видео:
 https://github.com/drucoder/sweater/tree/SpringSecurity
