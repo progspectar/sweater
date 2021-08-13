@@ -1,28 +1,39 @@
 # sweater
 
-https://www.youtube.com/watch?v=jH17YkBTpI4
+Добавляем базу данных (БД) в Spring
 
-https://spring.io/guides/gs/serving-web-content/
+Ссылка на git репозиторий из видео:
+https://github.com/drucoder/sweater/tree/JPA_Postgres
 
-ItelliJ IDEA
+Для начала нам необходимо найти нужный гайд на сайте Spring:
+https://spring.io/guides/gs/accessing-data-mysql/
 
-https://spring.io/guides/gs/serving-web-content/
+Следующим шагом мы устанавливаем необходимые зависимости. В руководстве, которое мы используем, обозначена СУБД MySQL, которую можно использовать, как быстрый старт (её необходимо установить отдельно). Я же предпочитаю Postgres (его тоже надо устанавливать отдельно), ввиду большего соответсвия моим требованиям. На начальном этапе вы можете использовать любую удобную для вас БД.
 
-После того, как мы создали контроллер, шаблон и класс запуска приложения, мы запускаем приложение и смотрим на результат по адресу:
-http://localhost:8080/greeting
+Зависимость для Postgres:
+https://gist.github.com/drucoder/540185d50117491e094991d8a95c772d
 
-заменяем шаблонизатор по умолчанию Thymeleaf на- Mustache. :
+#pom.xml
 <dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-starter-mustache</artifactId>
+<groupId>org.postgresql</groupId>
+<artifactId>postgresql</artifactId>
+<scope>runtime</scope>
 </dependency>
 
-Ссылка на руководство по Mustache:
+Настройки БД для Postgres:
+https://gist.github.com/drucoder/17424174aa6c6ae3338632bcedcac859
+
+Далее по руководству создаем доменный объект (объект, который будем хранить в БД), репозиторий, для взаимодействия с БД и вносим изменения в контроллер и шаблон страницы.
+
+Руководство по mustache:
 http://mustache.github.io/mustache.5.html
 
+Руководство по JPA репозиториям:
+https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
 
-git:
+#git:
+git checkout -b JPA_Postgres
 git add .
-git commit -m "mvc-web"
-git branch -M mvc-web
-git push -u origin mvc-web	
+git commit -m "JPA_Postgres"
+git branch -M JPA_Postgres
+git push -u origin JPA_Postgres
