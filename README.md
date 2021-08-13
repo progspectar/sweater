@@ -1,6 +1,6 @@
 # sweater
 
-# Добавляем Spring Security (пользователи и авторизация) в приложение.
+# Добавляем Spring Security (пользователей и авторизацию).
 
 https://www.youtube.com/watch?v=WDlifgLS8iQ
 
