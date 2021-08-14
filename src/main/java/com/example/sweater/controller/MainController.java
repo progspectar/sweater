@@ -1,8 +1,10 @@
 package com.example.sweater.controller;
 
 import com.example.sweater.domain.Message;
+import com.example.sweater.domain.User;
 import com.example.sweater.repos.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +16,7 @@ import java.util.Map;
 public class MainController {
     @Autowired
     private MessageRepo messageRepo;
-    //            @RequestParam(name="name", required=false, defaultValue="World") String name,
-//            Map<String, Object> model    ) {
+
     @GetMapping("/")
     public String greeting() {
         return "greeting";
@@ -31,8 +32,11 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
-        Message message = new Message(text, tag);
+    public String add(@AuthenticationPrincipal User user,
+            @RequestParam String text,
+            @RequestParam String tag,
+            Map<String, Object> model) {
+        Message message = new Message(text, tag, user);
 
         messageRepo.save(message);
         Iterable<Message> messages = messageRepo.findAll();
@@ -40,12 +44,6 @@ public class MainController {
         return "main";
     }
 
-
-    //+
-    //<form method="post" action="filter">
-    //    <input type="text" name="filter">
-    //(method="post" action="filter", input name="filter")=> @PostMapping("filter"),
-    // @RequestParam String filter
     @PostMapping("filter")
     public String filter(@RequestParam String filter, Map<String, Object> model) {
         Iterable<Message> messages;
