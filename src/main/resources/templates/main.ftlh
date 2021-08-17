@@ -1,10 +1,12 @@
-<#import "parts/common.ftl" as c>
-<#import "parts/login.ftl" as l>
+<#import "parts/common.ftlh" as c>
+<#import "parts/login.ftlh" as l>
 
 <@c.page>
 <div>
     <@l.logout />
 </div>
+    <p><span><a href="user">User list</a> </span></p>
+
 <div>
     <form method="post">
         <input type="text" name="text" placeholder="Введите сообщение" />
