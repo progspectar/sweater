@@ -17,11 +17,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserSevice userSevice;
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/registration").permitAll()
+                    .antMatchers("/", "/registration", "/static/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
