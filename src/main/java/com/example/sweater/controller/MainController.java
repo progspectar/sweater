@@ -53,7 +53,7 @@ public class MainController {
             @RequestParam String text,
             @RequestParam String tag, Map<String, Object> model,
             @RequestParam("file") MultipartFile file
-    ) {
+    ) throws IOException {
         Message message = new Message(text, tag, user);
 
         if (file != null && !file.getOriginalFilename().isEmpty()) {
@@ -66,13 +66,9 @@ public class MainController {
             String uuidFile = UUID.randomUUID().toString();
             String resultFilename = uuidFile + "." + file.getOriginalFilename();
 
-            try {
-                // IOException
-                file.transferTo(new File(uploadPath + "/" + resultFilename));
-                message.setFilename(resultFilename);
-            } catch (Exception e) {
-                System.out.println("IOException " + e.toString());
-            }
+            file.transferTo(new File(uploadPath + "/" + resultFilename));
+
+            message.setFilename(resultFilename);
         }
 
         messageRepo.save(message);

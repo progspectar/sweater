@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,14 +44,14 @@ public class UserController {
     ) {
         user.setUsername(username);
 
-//        Set<String> roles = Arrays.stream(Role.values())
-//                .map(Role::name)
-//                .collect(Collectors.toSet());
+        Set<String> roles = Arrays.stream(Role.values())
+                .map(Role::name)
+                .collect(Collectors.toSet());
 
-        Set<String> roles = new HashSet<String>();
-        for (Role c : Role.values()) {
-            roles.add(c.name());
-        }
+//        Set<String> roles = new HashSet<String>();
+//        for (Role c : Role.values()) {
+//            roles.add(c.name());
+//        }
 
         user.getRoles().clear();
 
