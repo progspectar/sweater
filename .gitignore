@@ -1,0 +1,7 @@
+*.class
+*.jar
+target
+.idea
+*.bat
+*.doc*
+temp/
