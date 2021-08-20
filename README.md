@@ -1,1 +1,1 @@
-#Spring Boot FlyWay: database migrations, user profile#
+#Spring Boot FlyWay: database migrations, user profile
