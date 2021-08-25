@@ -53,7 +53,6 @@ public class UserController {
         model.addAttribute("email", user.getEmail());
 
         return "profile";
-
     }
 
     @PostMapping("profile")

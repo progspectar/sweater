@@ -28,3 +28,5 @@ foreign key (user_id) references usr;
 alter table if exists  user_role
 add constraint user_role_user_fk
 foreign key (user_id) references usr;
+
+-- update usr set password = crypt(password,gen_salt('bf',0))
